@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  /* === ENTERPRISE COLOR TOKEN SYSTEM === */
+
+  /* Neutrals (90% of visual weight) */
+  --color-ink: #0B1220;              /* Near-black navy for text */
+  --color-ink-muted: #535963;        /* Fallback for older browsers */
+  --color-ink-muted: oklch(0.40 0.03 257.28);  /* Secondary text - WCAG AA compliant (~5.02:1 contrast) */
+  --color-ink-subtle: #6B7280;       /* Tertiary text */
+
+  --color-surface: #FFFFFF;          /* Primary background */
+  --color-surface-muted: #F6F7FB;    /* Section alternates */
+  --color-surface-elevated: #FFFFFF; /* Cards */
+
+  --color-border: #E6E8F0;           /* Default borders */
+  --color-border-muted: #F1F5F9;     /* Subtle dividers */
+
+  /* Brand Colors (sparingly used) */
+  --color-primary: #1E3A8A;          /* Deep blue - CTAs, links, headers */
+  --color-primary-hover: #1E40AF;    /* Slightly lighter for hover */
+  --color-primary-light: #EFF6FF;    /* Backgrounds, badges */
+
+  /* Single Accent (community/sustainability highlights only) */
+  --color-accent: #166534;           /* Evergreen - schools, environment, community */
+  --color-accent-hover: #15803D;
+  --color-accent-light: #F0FDF4;
+
+  /* Chart Colors (single-hue blue ramp for clarity) */
+  --color-chart-1: #1E3A8A;          /* Schools - full primary */
+  --color-chart-2: #3B82F6;          /* County - 60% tint */
+  --color-chart-3: #60A5FA;          /* Career/Tech - 40% tint */
+  --color-chart-4: #93C5FD;          /* City - 25% tint */
+  --color-chart-accent: #166534;     /* Optional accent highlight */
+
+  /* Glass Effect (Navbar) */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-bg-scrolled: rgba(255, 255, 255, 0.95);
+  --glass-blur: blur(12px);
+
+  /* === LEGACY ALIASES (backward compatibility) === */
+  /* Backgrounds */
+  --color-background: var(--color-surface);
+  --color-background-secondary: var(--color-surface-muted);
+  --color-background-tertiary: #F1F5F9;
+
+  /* Text - mapped to new ink tokens */
+  --color-foreground: var(--color-ink);
+  --color-foreground-strong: #020617;
+  --color-foreground-muted: var(--color-ink-muted);
+  --color-foreground-subtle: var(--color-ink-subtle);
+
+  /* Primary - mapped to new primary */
+  --color-primary-dark: #172554;
+  --color-primary-accessible: var(--color-primary);
+  --color-primary-accessible-dark: var(--color-primary-hover);
+
+  /* Secondary - now maps to primary for consistency */
+  --color-secondary: #3B82F6;
+  --color-secondary-hover: #2563EB;
+  --color-secondary-light: #DBEAFE;
+
+  /* Legacy chart colors (mapped to new ramp) */
+  --color-chart-5: #BFDBFE;          /* Legacy - lighter blue */
+  --color-chart-6: #DBEAFE;          /* Legacy - lightest blue */
+
+  /* === SHADOWS (softer, more premium) === */
+  --shadow-card: 0 1px 3px rgb(0 0 0 / 0.04), 0 4px 6px rgb(0 0 0 / 0.02);
+  --shadow-card-hover: 0 4px 12px rgb(0 0 0 / 0.06), 0 8px 16px rgb(0 0 0 / 0.04);
+  --shadow-elevated: 0 8px 24px rgb(0 0 0 / 0.08), 0 16px 32px rgb(0 0 0 / 0.04);
+
+  /* TODO(fork): Update if changing fonts (must match layout.tsx font import) */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Animations - spring-like timing */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  --animate-accordion-down: accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-accordion-up: accordion-up 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Accordion animation utilities */
+.animate-accordion-down {
+  animation: accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    line-height: 1.625;
+  }
+
+  /* Fix header overlap when scrolling to anchors */
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  /* Precise scroll anchors for better heading positioning */
+  .scroll-anchor {
+    scroll-margin-top: 100px;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

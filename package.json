@@ -1,0 +1,47 @@
+{
+  "name": "advocacy-site-template",
+  "_todo_fork": "TODO(fork): Update the name field above to your project name",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "optimize:images": "node scripts/optimize-images-automated.mjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-focus-scope": "^1.1.8",
+    "clsx": "^2.1.1",
+    "country-flag-icons": "^1.6.4",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.0",
+    "postmark": "^4.0.5",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.0",
+    "jsdom": "^27.3.0",
+    "playwright": "^1.57.0",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^4.0.16"
+  }
+}

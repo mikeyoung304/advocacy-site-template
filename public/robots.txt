@@ -1,0 +1,9 @@
+# TODO(fork): Update project name and domain URL
+# Your Project Name
+# https://example.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://example.com/sitemap.xml
